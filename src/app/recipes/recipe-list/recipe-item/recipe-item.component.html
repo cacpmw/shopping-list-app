@@ -1,3 +1,9 @@
-<p>
-  recipe-item works!
-</p>
+<a (click)="onClicked" href="#" class="list-group-item clearfix">
+    <div class="pull-left">
+        <h4 [innerText]="recipe.name" class="list-group-item-heading"></h4>
+        <p [innerText]="recipe.description" class="list-group-item-text"></p>
+    </div>
+    <span class="pull-right">
+        <img [src]="recipe.imagePath" style="max-height: 50px;" class="img-responsive" alt="">
+    </span>
+</a>
