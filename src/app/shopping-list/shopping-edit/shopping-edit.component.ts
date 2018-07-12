@@ -38,7 +38,7 @@ export class ShoppingEditComponent implements OnInit {
 
   }
   onClear() {
-    console.log("entrou");
+    
     this.name = null;
     this.amount = null;
 
