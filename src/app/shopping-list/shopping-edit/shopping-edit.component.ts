@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
+import { ShoppingService } from '../../services/shopping.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -10,37 +11,23 @@ export class ShoppingEditComponent implements OnInit {
   name: string = "";
   amount: number = 0;
   ingredient: Ingredient;
-  @Output() createdIngredient = new EventEmitter<Ingredient>();
-  @Output() removedIngredient = new EventEmitter<Ingredient>();
-  constructor() { }
+
+  constructor(private shoppingService: ShoppingService) { }
 
   ngOnInit() {
   }
-  onCreate(ingredient: Ingredient) {
-    this.createdIngredient.emit(ingredient);
 
-  }
-  onAdd() {
-    if (this.name.length > 0 && this.amount > 0) {
-      this.ingredient = new Ingredient(this.name, this.amount);
-      this.onCreate(this.ingredient);
-    }
+  add() {
+    this.shoppingService.add({ name: this.name, amount: this.amount });
   }
 
-  onDelete() {
-    if (this.name.length > 0) {
-      this.ingredient = new Ingredient(this.name, 0);
-      this.onRemove(this.ingredient);
-    }
-  }
-  onRemove(ingredient: Ingredient) {
-    this.removedIngredient.emit(ingredient);
+
+  remove() {
+    this.shoppingService.remove({ name: this.name, amount: this.amount });
 
   }
-  onClear() {
-    
+  clear() {
     this.name = null;
     this.amount = null;
-
   }
 }
