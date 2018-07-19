@@ -22,7 +22,7 @@ export class RecipeEditComponent implements OnInit {
         this.editMode = true;
         this.recipe = this.recipeService.getRecipe(this.id);
       }
-      console.log(this.editMode);
+      
     });
   }
 
