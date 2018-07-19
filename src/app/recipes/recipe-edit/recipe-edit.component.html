@@ -1,0 +1,6 @@
+<div *ngIf="!editMode; else edit">
+  <p>Create new Recipe</p>
+</div>
+<ng-template #edit>
+  <div>Edit recipe</div>
+</ng-template>
