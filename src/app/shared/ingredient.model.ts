@@ -1,8 +1,7 @@
 export class Ingredient {
 
-    
-    //automatically create two properties and assign values
-    constructor(public name: string, public amount: number) {
+    //automatically create 3 properties and assign values
+    constructor(public id?: number, public name?: string, public amount?: number) {
     }
-    
+
 }
