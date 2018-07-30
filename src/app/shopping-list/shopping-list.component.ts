@@ -3,6 +3,7 @@ import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingService } from '../services/shopping.service';
 import { Subscription } from '../../../node_modules/rxjs';
 
+
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -15,6 +16,7 @@ export class ShoppingListComponent implements OnInit {
   constructor(private shoppingService: ShoppingService) { }
 
   ngOnInit() {
+    debugger;
     this.ingredients = this.shoppingService.getIngredients();
     this.ingredientsChangedSubscription = this.shoppingService.ingredientsChanged.subscribe(
       (ingredients: Ingredient[]) => {

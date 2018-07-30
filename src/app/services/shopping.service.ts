@@ -20,13 +20,19 @@ export class ShoppingService {
 
   add(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
-
-    this.ingredientsChanged.next(this.getIngredients());
+    this.emitIngredientsChange();
   }
   addIngredients(ingredients: Ingredient[]) {
     this.ingredients.push(...ingredients);//break array into single objects
-    this.ingredientsChanged.next(this.getIngredients());
-
+    this.emitIngredientsChange();
+  }
+  updateIngredient(selectedIngredient: Ingredient) {
+    this.ingredients.forEach(ingredient => {
+      if (ingredient.id === selectedIngredient.id) {
+        ingredient.amount = selectedIngredient.amount;
+        ingredient.name = selectedIngredient.name;
+      }
+    });
   }
 
   getIngredients() {
@@ -43,11 +49,18 @@ export class ShoppingService {
     return selectedIngredient;
   }
   remove(id: number) {
-    for (var i = this.ingredients.length - 1; i >= 0; --i) {
-      if (this.ingredients[i].id == id) {
-        this.ingredients.splice(i, 1);
+    debugger;
+    let index: number;
+    this.ingredients.forEach(ingredient => {
+      if (id === ingredient.id) {
+        index = this.ingredients.indexOf(ingredient);
       }
-    }
+    });
+    this.ingredients.splice(index, 1);
+    this.emitIngredientsChange();
+  }
+
+  emitIngredientsChange() {
     this.ingredientsChanged.next(this.getIngredients());
   }
 }
