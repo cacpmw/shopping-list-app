@@ -49,7 +49,7 @@ export class ShoppingService {
     return selectedIngredient;
   }
   remove(id: number) {
-    debugger;
+   
     let index: number;
     this.ingredients.forEach(ingredient => {
       if (id === ingredient.id) {
