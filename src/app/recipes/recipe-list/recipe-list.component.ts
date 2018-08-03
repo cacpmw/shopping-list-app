@@ -16,12 +16,26 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   constructor(private recipeService: RecipeService,
     private router: Router, private route: ActivatedRoute) { }
 
+  //#region Documentation
+  /* [ENGLISH] 
+      Subscribed to the recipesChanged on the recipeService to get automatic updates on changes in the recipes array*/
+  /* [PT-BR] 
+      Assinado no recipesChanged do recipeService para receber atualizações automáticas das mudanças do array de recipes*/
+  //#endregion
   ngOnInit() {
     this.recipeChangedSubscription = this.recipeService.recipesChanged.subscribe((recipes: Recipe[]) => {
       this.recipes = recipes;
     })
     this.recipes = this.recipeService.getRecipes();
   }
+
+  //#region Documetation
+  /* [EGNLISH] 
+       Unsubscribe from recipesChanged on the recipeService when component is destroyed to prevent memory leak */
+  /* [PT-BR] 
+     Cancelado assinatura no recipesChanged do recipeService quando o componente é destruído para evitar
+     vazamento de memória.*/
+  //#endregion
   ngOnDestroy() {
     this.recipeChangedSubscription.unsubscribe();
   }

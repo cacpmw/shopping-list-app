@@ -8,7 +8,7 @@ import { Recipe } from '../recipe.model';
 /* [EGNLISH] 
     This file is a reactive form sample */
 /* [PT-BR] 
-    Este arquivo contêm codigo de exemplo de reactive form*/
+    Este arquivo contêm código de exemplo de reactive form*/
 //#endregion
 @Component({
   selector: 'app-recipe-edit',
@@ -117,7 +117,7 @@ export class RecipeEditComponent implements OnInit {
       Binded to KEYUP and CLICK events in the recipe-edit.component.html 
   */
   /*[PT-BR] 
-      Impede o usuário de digitar um numero menor que 1 no formularo de edição e de nova receita. 
+      Impede o usuário de digitar um número menor que 1 no formularo de edição e de nova receita. 
       vinculado aos eventos KEYUP e CLICK no arquivo recipe-edit.component.html*/
   //#endregion
   minValue() {
