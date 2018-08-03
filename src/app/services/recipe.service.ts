@@ -32,10 +32,9 @@ export class RecipeService {
   addRecipe(newRecipe: Recipe) {
     newRecipe.id = this.recipes.length + 1;
     this.recipes.push(newRecipe)
-    //this.recipesChanged.next(this.getRecipes());
+    this.recipesChanged.next(this.getRecipes());
   }
   updateRecipe(id: number, updatedRecipe: Recipe) {
-
     for (let i = 0; i < this.recipes.length; i++) {
       if (this.recipes[i].id === id) {
         this.recipes[i].description = updatedRecipe.description;
@@ -46,5 +45,15 @@ export class RecipeService {
       }
     }
     this.recipesChanged.next(this.getRecipes());
+  }
+
+  removeRecipe(id: number) {
+    for (let i = 0; i < this.recipes.length; i++) {
+      if (this.recipes[i].id === id) {
+        let removed = this.recipes.splice(this.recipes.indexOf(this.recipes[i]), 1);
+        this.recipesChanged.next(this.getRecipes());
+        return;
+      }
+    }
   }
 }

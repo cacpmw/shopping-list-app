@@ -15,6 +15,15 @@ export class RecipeDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { }
 
+  //#region Documentation
+  /* [EGNLISH] 
+     Subscribed to the route params in order to automatically 
+     retrive the recipe object whenever URL ID parameters changes */
+  /* [PT-BR] 
+     Assinado no route params para automaticamente regastar o
+     objeto do tipo recipe toda vez que o parametro ID da URL mudar.
+     */
+  //#endregion
   ngOnInit() {
     this.route.params
       .subscribe((param: Params) => {
@@ -27,7 +36,10 @@ export class RecipeDetailComponent implements OnInit {
   }
   edit() {
     this.router.navigate(['edit'], { relativeTo: this.route });
+  }
 
-
+  delete() {
+    this.recipeService.removeRecipe(this.recipe.id);
+    this.router.navigate(['recipes']);
   }
 }

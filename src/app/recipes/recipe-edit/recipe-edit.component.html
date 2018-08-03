@@ -19,13 +19,13 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label for="imagePath">Image Url</label>
-            <input formControlName="imagePath" type="text" name="imagePath" id="imagePath" class="form-control">
+            <input formControlName="imagePath" type="text" name="imagePath" id="imagePath" #imagePath class="form-control">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <img src="" class="img-responsive">
+          <img [src]="imagePath.value" class="img-responsive">
         </div>
       </div>
       <div class="row">
@@ -54,11 +54,11 @@
             </div>
             <div class="col-xs-2">
 
-              <input type="number" formControlName="amount"(keyup)="minValue()" (change)="minValue()" class="form-control">
+              <input type="number" min="1" formControlName="amount" class="form-control">
             </div>
             <div class="col-xs-2">
 
-              <button name="btn" id="btn" class="btn btn-danger">X</button>
+              <button name="btn" (click)="deleteIngredient(i)" type="button" id="btn" class="btn btn-danger">X</button>
             </div>
           </div>
         </div>
