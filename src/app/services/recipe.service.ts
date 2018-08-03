@@ -45,6 +45,6 @@ export class RecipeService {
         return;
       }
     }
-    //this.recipesChanged.next(this.getRecipes());
+    this.recipesChanged.next(this.getRecipes());
   }
 }

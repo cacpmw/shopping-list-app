@@ -49,13 +49,18 @@ export class RecipeEditComponent implements OnInit {
   }
   private initiForm() {
     let recipeIngredients = new FormArray([]);
-    if (this.recipe.ingredients) {
+    if (this.recipe != null && this.recipe.ingredients) {
       this.recipe.ingredients.forEach(ingredient => {
         recipeIngredients.push(new FormGroup({
           'name': new FormControl(ingredient.name, Validators.required),
           'amount': new FormControl(ingredient.amount, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/), Validators.min(1)])
         }));
       });
+    } else {
+      recipeIngredients.push(new FormGroup({
+        'name': new FormControl(null, Validators.required),
+        'amount': new FormControl(1, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/), Validators.min(1)])
+      }));
     }
     this.recipeForm = new FormGroup({
       'name': new FormControl(this.recipe ? this.recipe.name : null, Validators.required),
