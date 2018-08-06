@@ -14,7 +14,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipeChangedSubscription = new Subscription();
 
   constructor(private recipeService: RecipeService,
-    private router: Router, private route: ActivatedRoute) { }
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   //#region Documentation
   /* [ENGLISH] 
@@ -27,6 +29,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       this.recipes = recipes;
     })
     this.recipes = this.recipeService.getRecipes();
+
   }
 
   //#region Documetation
