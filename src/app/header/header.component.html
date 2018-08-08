@@ -13,6 +13,12 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a [routerLink]="['signup']">Register</a>
+                </li>
+                <li>
+                    <a [routerLink]="['signin']">Signin</a>
+                </li>
                 <li class="dropdown" appDropdown>
                     <a style="cursor:pointer" class="dropdown-toggle" role="button">Actions
                         <span class="caret"></span>
@@ -22,7 +28,7 @@
                             <a style="cursor:pointer" (click)="postRecipes()">Save</a>
                         </li>
                         <li>
-                            <a style="cursor:pointer"(click)="getRecipes()">Fetch</a>
+                            <a style="cursor:pointer" (click)="getRecipes()">Fetch</a>
                         </li>
                     </ul>
                 </li>
