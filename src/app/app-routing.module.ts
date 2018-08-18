@@ -12,14 +12,7 @@ import { AuthGuardGuard } from './auth/guard/auth-guard.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  {
-    path: 'recipes', component: RecipesComponent, children: [
-      { path: '', component: RecipeStartComponent },
-      { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuardGuard] },
-      { path: ':id', component: RecipeDetailComponent, canActivate: [AuthGuardGuard]  },
-      { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuardGuard] }
-    ]
-  },
+  
   {
     path: 'shopping-list', component: ShoppingListComponent
   },
