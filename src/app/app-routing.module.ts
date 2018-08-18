@@ -12,9 +12,10 @@ import { AuthGuardGuard } from './auth/guard/auth-guard.guard';
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', component:HomeComponent },
-  
- 
+  { path: '', component: HomeComponent },
+  { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule' },
+  {path:'shopping-list',loadChildren:'./shopping-list/shopping-list.module#ShoppingListModule'}
+
 
 ];
 @NgModule({

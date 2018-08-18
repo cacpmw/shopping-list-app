@@ -5,7 +5,7 @@ import { ShoppingListComponent } from "./shopping-list.component";
 import { AuthGuardGuard } from "../auth/guard/auth-guard.guard";
 
 const shoppingListRoutes: Routes = [
-    { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuardGuard] },
+    { path: '', component: ShoppingListComponent, canActivate: [AuthGuardGuard] },
 ];
 @NgModule({
     imports: [CommonModule,
