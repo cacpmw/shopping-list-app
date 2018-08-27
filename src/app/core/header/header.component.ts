@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { DataStorageService } from "../services/data-storage.service";
-import { AuthService } from "../services/auth.service";
+import { DataStorageService } from "../../services/data-storage.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
     selector: "app-header",
