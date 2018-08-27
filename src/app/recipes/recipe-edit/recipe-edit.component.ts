@@ -120,14 +120,14 @@ export class RecipeEditComponent implements OnInit {
       Impede o usuário de digitar um número menor que 1 no formularo de edição e de nova receita. 
       vinculado aos eventos KEYUP e CLICK no arquivo recipe-edit.component.html*/
   //#endregion
-  minValue() {
-    let formArray = <FormArray>(this.recipeForm.controls['ingredients']);
-    formArray.controls.forEach(control => {
-      if (+control.get('amount').value < 1 || isNaN(+control.get('amount').value)) {
-        control.get('amount').setValue(1);
-      }
-    });
-  }
+  /*   minValue() {
+      let formArray = <FormArray>(this.recipeForm.controls['ingredients']);
+      formArray.controls.forEach(control => {
+        if (+control.get('amount').value < 1 || isNaN(+control.get('amount').value)) {
+          control.get('amount').setValue(1);
+        }
+      });
+    } */
 
   clear() {
     this.recipeForm.reset();
@@ -135,5 +135,9 @@ export class RecipeEditComponent implements OnInit {
 
   deleteIngredient(index: number) {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
+  getControls() {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 }

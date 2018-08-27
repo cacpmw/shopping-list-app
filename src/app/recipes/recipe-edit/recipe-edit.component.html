@@ -47,7 +47,7 @@
               <button type="button" class="btn btn-success" (click)="newIngredient()">New Ingredient</button>
             </div>
           </div>
-          <div class="row" style="margin-top: 10px;" [formGroupName]="i" *ngFor="let ingredient of recipeForm.get('ingredients').controls;let i = index">
+          <div class="row" style="margin-top: 10px;" [formGroupName]="i" *ngFor="let ingredient of getControls();let i = index">
             <div class="col-xs-8">
 
               <input type="text" formControlName="name" class="form-control">
