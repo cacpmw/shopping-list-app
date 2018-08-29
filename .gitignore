@@ -42,3 +42,4 @@ src/environments
 /.firebase
 firebase.json
 .firebaserc
+package-lock.json
