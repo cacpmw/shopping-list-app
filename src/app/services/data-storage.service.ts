@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+
 import { RecipeService } from './recipe.service';
 
 import 'rxjs/Rx';/* [ENGLISH] - Needed for the map() method */ /* [PT-BR] - Necessário para o método map() */
 import { Recipe } from '../recipes/recipe.model';
 import { AuthService } from './auth.service';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
 
-  constructor(private http: Http,
+  constructor(private httpClient: HttpClient,
     private recipeService: RecipeService,
     private authService: AuthService) { }
 
@@ -27,12 +29,10 @@ export class DataStorageService {
   //#endregion
   postRecipe() {
     const token = this.authService.getToken();
-    return this.http.put('https://ng-shopping-list-542c1.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes())
-      .map(
-        (response: Response) => {
-          return response.json();
-        }
-      )
+    const url = environment.firebaseurl + 'recipes.json';
+    const headers = new HttpHeaders();//not used with firebase. Should be added in the options object
+    headers.set('Authorization', 'Bearer ' + token)
+    return this.httpClient.put(url, this.recipeService.getRecipes(), {observe:'body', params: new HttpParams().set('auth', token), reportProgress:true })
   }
 
   //#region Documentation
@@ -52,21 +52,28 @@ export class DataStorageService {
   //#endregion
   getRecipes() {
     const token = this.authService.getToken();
-    return this.http.get('https://ng-shopping-list-542c1.firebaseio.com/recipes.json?auth=' + token).map(
-      (response: Response) => {
-        const recipes: Recipe[] = response.json();
-        for (let recipe of recipes) {
-          if (!recipe['ingredients']) {
-            recipe['ingredients'] = [];
+    const url = environment.firebaseurl + 'recipes.json';
+    // return this.httpClient.get<Recipe[]>(url + token).map(
+    return this.httpClient.get<Recipe[]>(url,
+      {//this is the default behavior, therefore unecessary but does no harm
+        observe: 'body',
+        responseType: 'json',
+        params: new HttpParams().set('auth', token)//could be done directly on the URL
+      }).map(
+        (recipes) => {
+          console.log(recipes);
+          for (let recipe of recipes) {
+            if (!recipe['ingredients']) {
+              recipe['ingredients'] = [];
+            }
           }
+          return recipes;
         }
-        return recipes;
-      }
-    ).subscribe(
-      (recipes: Recipe[]) => {
-        this.recipeService.setRecipes(recipes);
-      }
-    );
+      ).subscribe(
+        (recipes: Recipe[]) => {
+          this.recipeService.setRecipes(recipes);
+        }
+      );
 
   }
 }

@@ -14,7 +14,7 @@ export class HeaderComponent {
         private authService: AuthService) { }
     postRecipes() {
         this.dataStorage.postRecipe().subscribe(
-            (response: Response) => { console.log(response) },
+            (response) => { console.log(response) },
             (error) => console.log(error),
 
         );
